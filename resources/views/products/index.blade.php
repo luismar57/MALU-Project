@@ -98,7 +98,7 @@
                                             alt="{{ $product->pro_name }}" 
                                             class="h-14 w-14 object-cover rounded-lg border border-gray-700/50 shadow-md" 
                                             loading="lazy" 
-                                            onerror="this.src='/images/fallback.jpg'"
+                                            onerror="this.src='/images/fallback.svg'; this.onerror=null;"
                                         >
                                     @else
                                         <div class="h-14 w-14 rounded-lg bg-gray-700/50 flex items-center justify-center text-gray-500 border border-gray-700/50">

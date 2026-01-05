@@ -6,7 +6,7 @@
     <div class="flex flex-col md:flex-row justify-between items-center mb-8">
         <div class="mb-4 md:mb-0">
             <h1 class="text-3xl font-bold text-gray-100">Dashboard</h1>
-            <p class="text-gray-400 mt-1">Welcome back to DeliciousEats admin panel</p>
+            <p class="text-gray-400 mt-1">Bienvenido de vuelta al panel de administración de MaluStore</p>
         </div>
         
     </div>
@@ -95,13 +95,13 @@
         </div>
     </div>
 
-    <!-- Calendar and Time in Cambodia -->
+    <!-- Calendar and Time in Ecuador -->
     <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-xl border border-gray-700/50 p-6 mb-8">
         <h2 class="text-xl font-semibold text-gray-200 mb-4 flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-400" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
             </svg>
-            Cambodia Calendar & Time
+            Ecuador Calendar & Time
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Calendar -->
@@ -164,12 +164,12 @@
             <!-- Current Time in Cambodia -->
             <div class="bg-gray-900/70 rounded-xl border border-gray-700/50 p-5 shadow-inner flex items-center justify-center">
                 <div class="text-center">
-                    <p class="text-sm font-medium text-gray-400 mb-3">Current Time in Cambodia (ICT, UTC+7)</p>
+                    <p class="text-sm font-medium text-gray-400 mb-3">Hora actual en Ecuador (ECT, UTC-5)</p>
                     <div class="relative">
                         <div class="absolute inset-0 bg-cyan-600/10 blur-xl rounded-full"></div>
-                        <p id="cambodiaTime" class="text-4xl font-bold text-white relative">11:54:00 AM</p>
+                        <p id="ecuadorTime" class="text-4xl font-bold text-white relative">11:54:00 AM</p>
                     </div>
-                    <p id="cambodiaDate" class="text-sm text-gray-400 mt-3">Thursday, April 24, 2025</p>
+                    <p id="ecuadorDate" class="text-sm text-gray-400 mt-3">jueves, 24 de abril de 2025</p>
                 </div>
             </div>
         </div>
@@ -223,7 +223,7 @@
                                             alt="{{ $product->pro_name }}" 
                                             class="h-14 w-14 object-cover rounded-lg border border-gray-700/50 shadow-md" 
                                             loading="lazy" 
-                                            onerror="this.src='/images/fallback.jpg'"
+                                            onerror="this.src='/images/fallback.svg'; this.onerror=null;"
                                         >
                                     @else
                                         <div class="h-14 w-14 rounded-lg bg-gray-700/50 flex items-center justify-center text-gray-500 border border-gray-700/50">
@@ -305,31 +305,27 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        function updateCambodiaTime() {
+        function updateEcuadorTime() {
             const now = new Date();
-            // Cambodia is UTC+7 (no DST)
-            const cambodiaTime = new Date(now.getTime() + 7 * 60 * 60 * 1000);
-            const hours = cambodiaTime.getUTCHours() % 12 || 12;
-            const minutes = String(cambodiaTime.getUTCMinutes()).padStart(2, '0');
-            const seconds = String(cambodiaTime.getUTCSeconds()).padStart(2, '0');
-            const ampm = cambodiaTime.getUTCHours() >= 12 ? 'PM' : 'AM';
-            const day = cambodiaTime.getUTCDate();
-            const month = cambodiaTime.toLocaleString('en-US', { month: 'long' });
-            const year = cambodiaTime.getUTCFullYear();
-            const weekday = cambodiaTime.toLocaleString('en-US', { weekday: 'long' });
+            // Use Intl with Ecuador timezone and Spanish (Ecuador) locale
+            const timeOpts = { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'America/Guayaquil' };
+            const dateOpts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Guayaquil' };
 
-            document.getElementById('cambodiaTime').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
-            document.getElementById('cambodiaDate').textContent = `${weekday}, ${month} ${day}, ${year}`;
+            const timeStr = new Intl.DateTimeFormat('es-EC', timeOpts).format(now);
+            const dateStr = new Intl.DateTimeFormat('es-EC', dateOpts).format(now);
+
+            document.getElementById('ecuadorTime').textContent = timeStr;
+            document.getElementById('ecuadorDate').textContent = dateStr;
         }
 
-        updateCambodiaTime();
-        setInterval(updateCambodiaTime, 1000);
+        updateEcuadorTime();
+        setInterval(updateEcuadorTime, 1000);
     });
 </script>
 
 <style>
     /* Glow effects */
-    #cambodiaTime {
+    #ecuadorTime {
         text-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
     }
     

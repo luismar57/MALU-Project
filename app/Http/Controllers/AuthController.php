@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -67,17 +67,29 @@ class AuthController extends Controller
     
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
-            $token = $user->createToken('API Token')->plainTextToken;
+
+            if (!$user instanceof User) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Authentication failed',
+                ], 401);
+            }
+            $token = $user->createToken('auth_token')->plainTextToken;
     
             return response()->json([
-                'message' => 'Login successful',
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-            ]);
+                'status' => 'success',
+                'data' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'token' => $token,
+                ],
+            ], 200);
         }
     
         return response()->json([
-            'message' => 'Invalid credentials.',
+            'status' => 'error',
+            'message' => 'Invalid credentials',
         ], 401);
     }
     
@@ -92,8 +104,9 @@ class AuthController extends Controller
         });
 
         return response()->json([
+            'status' => 'success',
             'message' => 'Successfully logged out',
-        ]);
+        ], 200);
     }
 
     // API register method
@@ -107,8 +120,10 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
+                'status' => 'error',
+                'message' => 'Validation failed',
                 'errors' => $validator->errors(),
-            ], 400);
+            ], 422);
         }
 
         $user = User::create([
@@ -117,14 +132,19 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // Log the user in and create a token
-        $token = $user->createToken('YourAppName')->plainTextToken;
+        // Create a token
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
+            'status' => 'success',
             'message' => 'Registration successful',
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-        ]);
+            'data' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'token' => $token,
+            ],
+        ], 201);
     }
 
     
@@ -145,10 +165,10 @@ public function addUser(Request $request)
         'password' => 'required|min:6',
     ]);
 
-    $user = \App\Models\User::create([
+    $user = User::create([
         'name' => $validated['name'],
         'email' => $validated['email'],
-        'password' => \Illuminate\Support\Facades\Hash::make($validated['password']),
+        'password' => Hash::make($validated['password']),
     ]);
 
     return response()->json([
@@ -161,7 +181,7 @@ public function addUser(Request $request)
 
 public function deleteUser($id)
 {
-    $user = \App\Models\User::find($id);
+    $user = User::find($id);
 
     if (!$user) {
         return response()->json([
@@ -179,7 +199,7 @@ public function deleteUser($id)
 
 public function updateUser(Request $request, $id)
 {
-    $user = \App\Models\User::find($id);
+    $user = User::find($id);
 
     if (!$user) {
         return response()->json([
@@ -197,7 +217,7 @@ public function updateUser(Request $request, $id)
     $user->email = $request->email ?? $user->email;
 
     if ($request->filled('password')) {
-        $user->password = \Illuminate\Support\Facades\Hash::make($request->password);
+        $user->password = Hash::make($request->password);
     }
 
     $user->save();

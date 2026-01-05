@@ -5,6 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $pro_id
+ * @property string $pro_code
+ * @property string $pro_name
+ * @property int|null $category_id
+ * @property int $qty
+ * @property float $price
+ * @property string|null $description
+ * @property float|null $discount
+ * @property string|null $image
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read float $discounted_price
+ * @property-read \App\Models\Category|null $category
+ */
 class Product extends Model
 {
     use HasFactory;

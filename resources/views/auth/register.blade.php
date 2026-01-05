@@ -10,76 +10,11 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-  
-    <!-- Tailwind Config -->
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Poppins', 'sans-serif'],
-            },
-            colors: {
-              'dark-blue': '#1E2A45',
-              'midnight': '#121827',
-              'accent-blue': '#3B82F6',
-              'accent-hover': '#2563EB'
-            },
-            boxShadow: {
-              'glow': '0 0 20px rgba(59, 130, 246, 0.25)'
-            }
-          }
-        }
-      }
-    </script>
+    <!-- Vite Assets -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
   
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <!-- Additional Custom Styles -->
-    <style>
-      .glass-effect {
-        backdrop-filter: blur(10px);
-        background: rgba(17, 24, 39, 0.85);
-      }
-      
-      .input-focus:focus {
-        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
-      }
-      
-      .btn-gradient {
-        background: linear-gradient(90deg, #3B82F6 0%, #2563EB 100%);
-      }
-      
-      .float-label {
-        top: -25px;
-        transition: all 0.2s ease;
-      }
-      
-      .progress-bar {
-        height: 4px;
-        width: 0%;
-        background: linear-gradient(90deg, #3B82F6 0%, #2563EB 100%);
-        transition: width 0.3s ease;
-      }
-      
-      .step-indicator {
-        transition: all 0.3s ease;
-      }
-      
-      .step-indicator.active {
-        background-color: #3B82F6;
-        border-color: #3B82F6;
-      }
-      
-      .step-indicator.completed {
-        background-color: #10B981;
-        border-color: #10B981;
-      }
-    </style>
 </head>
   
 <body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-midnight to-dark-blue text-gray-100 p-4">

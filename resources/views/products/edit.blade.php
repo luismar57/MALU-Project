@@ -230,7 +230,7 @@
                                                 alt="{{ $product->pro_name }}" 
                                                 class="h-40 object-contain rounded-lg" 
                                                 loading="lazy" 
-                                                onerror="this.src='/images/fallback.jpg'"
+                                                onerror="this.src='/images/fallback.svg'; this.onerror=null;"
                                                 id="current-image"
                                             >
                                         </div>
@@ -407,7 +407,7 @@
                 currentImage.src = url;
                 // Set a fallback in case the URL is invalid
                 currentImage.onerror = function() {
-                    this.src = '/images/fallback.jpg';
+                    this.src = '/images/fallback.svg'; this.onerror=null;
                 }
             }
         }

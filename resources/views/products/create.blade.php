@@ -210,19 +210,27 @@
                         <!-- Image Upload -->
                         <div>
                             <label for="image" class="block text-sm font-medium text-gray-300 mb-1">Product Image (Upload)</label>
-                            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-700 border-dashed rounded-lg">
+                            <div id="upload-area" class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-700 border-dashed rounded-lg hover:border-cyan-500 transition-colors duration-200 cursor-pointer">
                                 <div class="space-y-1 text-center">
-                                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                    <div class="flex text-sm text-gray-400">
-                                        <label for="image" class="relative cursor-pointer bg-gray-800 rounded-md font-medium text-cyan-400 hover:text-cyan-300 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500">
-                                            <span class="px-2">Upload a file</span>
-                                            <input id="image" name="image" type="file" class="sr-only">
-                                        </label>
-                                        <p class="pl-1">or drag and drop</p>
+                                    <div id="upload-content">
+                                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        <div class="flex text-sm text-gray-400">
+                                            <label for="image" class="relative cursor-pointer bg-gray-800 rounded-md font-medium text-cyan-400 hover:text-cyan-300 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500">
+                                                <span class="px-2">Upload a file</span>
+                                                <input id="image" name="image" type="file" accept="image/*" class="sr-only">
+                                            </label>
+                                            <p class="pl-1">or drag and drop</p>
+                                        </div>
+                                        <p class="text-xs text-gray-500">PNG, JPG, GIF up to 2MB</p>
                                     </div>
-                                    <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                    <!-- Image Preview -->
+                                    <div id="image-preview" class="hidden">
+                                        <img id="preview-img" src="" alt="Preview" class="mx-auto max-h-32 rounded-lg">
+                                        <p id="file-name" class="text-sm text-gray-400 mt-2"></p>
+                                        <button type="button" id="remove-image" class="mt-2 text-xs text-rose-400 hover:text-rose-300">Remove image</button>
+                                    </div>
                                 </div>
                             </div>
                             @error('image')
@@ -327,20 +335,105 @@
 </style>
 
 <script>
-    // Preview uploaded image
+    // Image upload and preview functionality
     document.addEventListener('DOMContentLoaded', function() {
         const imageInput = document.getElementById('image');
         const imageUrlInput = document.getElementById('image_url');
+        const uploadArea = document.getElementById('upload-area');
+        const uploadContent = document.getElementById('upload-content');
+        const imagePreview = document.getElementById('image-preview');
+        const previewImg = document.getElementById('preview-img');
+        const fileName = document.getElementById('file-name');
+        const removeImageBtn = document.getElementById('remove-image');
         
-        if (imageInput) {
-            imageInput.addEventListener('change', function(e) {
-                if (e.target.files && e.target.files[0]) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        // You could add image preview functionality here
-                        console.log('Image loaded:', e.target.result);
-                    }
-                    reader.readAsDataURL(e.target.files[0]);
+        // Drag and drop events
+        uploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            uploadArea.classList.add('border-cyan-500', 'bg-gray-800/30');
+        });
+        
+        uploadArea.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            uploadArea.classList.remove('border-cyan-500', 'bg-gray-800/30');
+        });
+        
+        uploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            uploadArea.classList.remove('border-cyan-500', 'bg-gray-800/30');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                const file = files[0];
+                if (file.type.startsWith('image/')) {
+                    handleImageFile(file);
+                }
+            }
+        });
+        
+        // Click to upload
+        uploadArea.addEventListener('click', function() {
+            imageInput.click();
+        });
+        
+        // File input change
+        imageInput.addEventListener('change', function(e) {
+            if (e.target.files && e.target.files[0]) {
+                handleImageFile(e.target.files[0]);
+            }
+        });
+        
+        // Remove image button
+        removeImageBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            resetImageUpload();
+        });
+        
+        // Handle image file
+        function handleImageFile(file) {
+            // Check file size (2MB limit)
+            if (file.size > 2 * 1024 * 1024) {
+                alert('File size must be less than 2MB');
+                return;
+            }
+            
+            // Check file type
+            if (!['image/jpeg', 'image/png', 'image/gif', 'image/webp'].includes(file.type)) {
+                alert('Please select a valid image file (JPEG, PNG, GIF, WebP)');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImg.src = e.target.result;
+                fileName.textContent = file.name;
+                uploadContent.classList.add('hidden');
+                imagePreview.classList.remove('hidden');
+                
+                // Clear image URL if file is uploaded
+                if (imageUrlInput) {
+                    imageUrlInput.value = '';
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        // Reset image upload
+        function resetImageUpload() {
+            imageInput.value = '';
+            previewImg.src = '';
+            fileName.textContent = '';
+            uploadContent.classList.remove('hidden');
+            imagePreview.classList.add('hidden');
+        }
+        
+        // Clear file upload when URL is entered
+        if (imageUrlInput) {
+            imageUrlInput.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    resetImageUpload();
                 }
             });
         }

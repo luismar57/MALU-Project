@@ -62,7 +62,10 @@ class ProductController extends Controller
             $validated['image'] = null;
         }
 
-        Product::create($validated);
+        // Remove the file input from validated data to avoid confusion
+        unset($validated['image_url']);
+
+        $product = Product::create($validated);
 
         return redirect()->route('products.index')->with('success', 'Product added successfully');
     }

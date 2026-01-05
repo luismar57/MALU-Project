@@ -93,7 +93,7 @@
                                     alt="{{ $product->pro_name }}" 
                                     class="rounded-lg object-contain w-full max-h-[400px]" 
                                     loading="lazy" 
-                                    onerror="this.src='/images/fallback.jpg'"
+                                    onerror="this.src='/images/fallback.svg'; this.onerror=null;"
                                 >
                             @else
                                 <div class="h-[400px] w-full rounded-lg bg-gray-800 flex items-center justify-center text-gray-500">

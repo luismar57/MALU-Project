@@ -1,0 +1,131 @@
+@import 'tailwindcss';
+
+/* CSS Variables */
+:root {
+  --sidebar-background: 222 47% 11%;
+  --sidebar-foreground: 210 40% 98%;
+  --sidebar-accent: 189 94% 43%;
+  --sidebar-accent-foreground: 222 47% 11%;
+  --sidebar-border: 217 33% 17%;
+  --sidebar-ring: 189 94% 43%;
+  --primary: 189 94% 43%;
+  --primary-foreground: 222 47% 11%;
+  --border: 214 32% 91%;
+  --sidebar-width: 16rem;
+  --sidebar-width-collapsed: 5rem;
+}
+
+/* Custom styles */
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(17, 24, 39, 0.85);
+}
+
+.input-focus:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.btn-hover:hover {
+  transform: translateY(-1px);
+  transition: all 0.2s ease-in-out;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Register form specific styles */
+.btn-gradient {
+  background: linear-gradient(90deg, #3B82F6 0%, #2563EB 100%);
+}
+
+.float-label {
+  top: -25px;
+  transition: all 0.2s ease;
+}
+
+.progress-bar {
+  height: 4px;
+  width: 0%;
+  background: linear-gradient(90deg, #3B82F6 0%, #2563EB 100%);
+  transition: width 0.3s ease;
+}
+
+.step-indicator {
+  transition: all 0.3s ease;
+}
+
+.step-indicator.active {
+  background-color: #3B82F6;
+  border-color: #3B82F6;
+}
+
+.step-indicator.completed {
+  background-color: #10B981;
+  border-color: #10B981;
+}
+
+/* Sidebar styles */
+.sidebar-expanded {
+  width: var(--sidebar-width);
+  transition: width 0.3s ease;
+}
+
+.sidebar-collapsed {
+  width: var(--sidebar-width-collapsed);
+  transition: width 0.3s ease;
+}
+
+.sidebar-collapsed .sidebar-text,
+.sidebar-collapsed .sidebar-group-label,
+.sidebar-collapsed .sidebar-profile-name,
+.sidebar-collapsed .sidebar-logo-text {
+  display: none;
+}
+
+.sidebar-collapsed .sidebar-menu-item {
+  justify-content: center;
+}
+
+.sidebar-collapsed .sidebar-profile {
+  justify-content: center;
+}
+
+.sidebar-rail {
+  position: absolute;
+  top: 0;
+  right: -4px;
+  bottom: 0;
+  width: 4px;
+  cursor: ew-resize;
+  background: transparent;
+  z-index: 10;
+}
+
+.sidebar-rail:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: hsl(var(--sidebar-border));
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

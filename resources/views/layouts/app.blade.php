@@ -3,120 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeliciousEats | Admin</title>
+    <title>MaluStore | Admin</title>
     <!-- Favicon -->
     <link rel="icon" href="https://i.ytimg.com/vi/x_9SdeVjfe4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAHJnuMKW_ny8rT3ZCRZPM8jsPCRQ" type="image/x-icon">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Vite Assets -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        sidebar: {
-                            DEFAULT: 'hsl(var(--sidebar-background))',
-                            foreground: 'hsl(var(--sidebar-foreground))',
-                            accent: 'hsl(var(--sidebar-accent))',
-                            'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-                            border: 'hsl(var(--sidebar-border))',
-                            ring: 'hsl(var(--sidebar-ring))',
-                        },
-                        primary: {
-                            DEFAULT: 'hsl(var(--primary))',
-                            foreground: 'hsl(var(--primary-foreground))',
-                        },
-                        border: 'hsl(var(--border))',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                },
-            },
-        }
-    </script>
-    
-    <style>
-        :root {
-            --sidebar-background: 222 47% 11%;
-            --sidebar-foreground: 210 40% 98%;
-            --sidebar-accent: 189 94% 43%;
-            --sidebar-accent-foreground: 222 47% 11%;
-            --sidebar-border: 217 33% 17%;
-            --sidebar-ring: 189 94% 43%;
-            
-            --primary: 189 94% 43%;
-            --primary-foreground: 222 47% 11%;
-            --border: 214 32% 91%;
-            
-            --sidebar-width: 16rem;
-            --sidebar-width-collapsed: 5rem;
-        }
-        
-        .sidebar-expanded {
-            width: var(--sidebar-width);
-            transition: width 0.3s ease;
-        }
-        
-        .sidebar-collapsed {
-            width: var(--sidebar-width-collapsed);
-            transition: width 0.3s ease;
-        }
-        
-        .sidebar-collapsed .sidebar-text,
-        .sidebar-collapsed .sidebar-group-label,
-        .sidebar-collapsed .sidebar-profile-name,
-        .sidebar-collapsed .sidebar-logo-text {
-            display: none;
-        }
-        
-        .sidebar-collapsed .sidebar-menu-item {
-            justify-content: center;
-        }
-        
-        .sidebar-collapsed .sidebar-profile {
-            justify-content: center;
-        }
-        
-        .sidebar-rail {
-            position: absolute;
-            top: 0;
-            right: -4px;
-            bottom: 0;
-            width: 4px;
-            cursor: ew-resize;
-            background: transparent;
-            z-index: 10;
-        }
-        
-        .sidebar-rail:hover::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 2px;
-            background-color: hsl(var(--sidebar-border));
-        }
-        
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
-        }
-        
-        .animate-pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-    </style>
+</head>
 </head>
 
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
@@ -134,7 +30,7 @@
                         <path d="M2 17l10 5 10-5"/>
                         <path d="M2 12l10 5 10-5"/>
                     </svg>
-                    <h1 class="ml-3 text-xl font-bold sidebar-logo-text">DeliciousEats</h1>
+                    <h1 class="ml-3 text-xl font-bold sidebar-logo-text">MaluStore</h1>
                 </div>
                 <button id="sidebar-toggle" class="ml-auto text-sidebar-foreground hover:text-sidebar-accent transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -250,7 +146,7 @@
                     Developed by <a href="https://web.facebook.com/urfavhak" class="font-medium text-primary hover:underline" target="_blank" rel="noopener noreferrer">XXXXXX</a>
                 </p>
                 <p class="mt-1">
-                    &copy; 2025 DeliciousEats. All rights reserved.
+                    &copy; 2025 MaluStore. Todos los derechos reservados.
                 </p>
             </footer>
         </div>

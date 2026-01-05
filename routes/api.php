@@ -7,6 +7,11 @@ use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\SlideHeroController;
 use Illuminate\Support\Facades\Route;
 
+// Auth API Routes
+Route::post('/login', [AuthController::class, 'apiLogin'])->name('api.login');
+Route::post('/register', [AuthController::class, 'apiRegister'])->name('api.register');
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'apiLogout'])->name('api.logout');
+
 // User API Routes
 Route::get('/users', [AuthController::class, 'getAllUsers']);
 Route::post('/add-user', [AuthController::class, 'addUser']);
@@ -34,3 +39,10 @@ Route::get('/slide-heroes/{id}', [SlideHeroController::class, 'showApi'])->name(
 Route::put('/slide-heroes/{id}', [SlideHeroController::class, 'updateApi'])->name('api.slide-heroes.update');
 Route::delete('/slide-heroes/{id}', [SlideHeroController::class, 'destroyApi'])->name('api.slide-heroes.destroy');
 Route::patch('/slide-heroes/{id}/toggle-status', [SlideHeroController::class, 'toggleStatusApi'])->name('api.slide-heroes.toggle-status');
+
+// Order API Routes - Protected with Sanctum
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/orders', [OrderController::class, 'store'])->name('api.orders.store');
+    Route::get('/orders', [OrderController::class, 'index'])->name('api.orders.index');
+    Route::post('/orders/{id}/cancel', [OrderController::class, 'cancel'])->name('api.orders.cancel');
+});
