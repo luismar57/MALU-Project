@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4">Edit Order #{{ $order->id }}</h1>
+        <h1 class="text-2xl font-bold mb-4">Editar Pedido #{{ $order->id }}</h1>
 
         @if (session('error'))
             <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
@@ -22,15 +22,15 @@
             @method('PUT')
             <div class="bg-white shadow-md rounded-lg p-6 mb-4">
                 <div class="mb-4">
-                    <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                    <label for="status" class="block text-sm font-medium text-gray-700">Estado</label>
                     <select name="status" id="status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                        <option value="pending" {{ $order->status === 'pending' ? 'selected' : '' }}>Pending</option>
-                        <option value="completed" {{ $order->status === 'completed' ? 'selected' : '' }}>Completed</option>
-                        <option value="cancelled" {{ $order->status === 'cancelled' ? 'selected' : '' }}>Cancelled</option>
+                        <option value="pending" {{ $order->status === 'pending' ? 'selected' : '' }}>Pendiente</option>
+                        <option value="completed" {{ $order->status === 'completed' ? 'selected' : '' }}>Completado</option>
+                        <option value="cancelled" {{ $order->status === 'cancelled' ? 'selected' : '' }}>Cancelado</option>
                     </select>
                 </div>
 
-                <h2 class="text-lg font-semibold mb-4">Items</h2>
+                <h2 class="text-lg font-semibold mb-4">Artículos</h2>
                 <div id="items">
                     @foreach ($order->orderItems as $index => $item)
                         <div class="flex gap-4 mb-2">
@@ -49,10 +49,10 @@
 
             <div class="flex justify-end gap-2">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition duration-200">
-                    Update Order
+                    Actualizar Pedido
                 </button>
                 <a href="{{ route('cart.index') }}" class="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded transition duration-200">
-                    Cancel
+                    Cancelar
                 </a>
             </div>
         </form>

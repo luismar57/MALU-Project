@@ -43,30 +43,36 @@
             <div class="py-4 flex flex-col h-[calc(100%-4rem)]">
                 <!-- Main Navigation -->
 <div class="px-3 space-y-1">
-    <div class="sidebar-group-label text-xs font-medium text-sidebar-foreground/70 px-3 mb-2">Main</div>
+    <div class="sidebar-group-label text-xs font-medium text-sidebar-foreground/70 px-3 mb-2">Principal</div>
     
     <!-- Dashboard -->
-    <a href="/dashboard" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('dashboard') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors" aria-label="Dashboard">
+    <a href="/dashboard" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('dashboard') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors" aria-label="Panel">
         <i class="fas fa-tachometer-alt w-5 h-5"></i>
-        <span class="ml-3 sidebar-text">Dashboard</span>
+        <span class="ml-3 sidebar-text">Panel</span>
     </a>
     
     <!-- Slide -->
-    <a href="/slide-heroes" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('slide') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors" aria-label="Slide">
+    <a href="/slide-heroes" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('slide') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors" aria-label="Diapositivas">
         <i class="fas fa-slideshare w-5 h-5"></i>
-        <span class="ml-3 sidebar-text">Slide</span>
+        <span class="ml-3 sidebar-text">Diapositivas</span>
     </a>
     
     <!-- Products -->
-    <a href="/products" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('products') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors" aria-label="Products">
+    <a href="/products" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('products') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors" aria-label="Productos">
         <i class="fas fa-box w-5 h-5"></i>
-        <span class="ml-3 sidebar-text">Products</span>
+        <span class="ml-3 sidebar-text">Productos</span>
     </a>
     
     <!-- Categories -->
-    <a href="/categories" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('categories') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors" aria-label="Categories">
+    <a href="/categories" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('categories') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors" aria-label="Categorías">
         <i class="fas fa-tags w-5 h-5"></i>
-        <span class="ml-3 sidebar-text">Categories</span>
+        <span class="ml-3 sidebar-text">Categorías</span>
+    </a>
+    
+    <!-- Orders -->
+    <a href="/orders" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('orders*') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors" aria-label="Pedidos">
+        <i class="fas fa-shopping-cart w-5 h-5"></i>
+        <span class="ml-3 sidebar-text">Pedidos</span>
     </a>
 </div>
                 
@@ -74,14 +80,14 @@
                 
                 <!-- Settings Section -->
                 <div class="px-3 mt-6 space-y-1">
-                    <div class="sidebar-group-label text-xs font-medium text-sidebar-foreground/70 px-3 mb-2">Settings</div>
+                    <div class="sidebar-group-label text-xs font-medium text-sidebar-foreground/70 px-3 mb-2">Ajustes</div>
                     <a href="/settings" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('settings') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
                         <i class="fas fa-cog w-5 h-5"></i>
-                        <span class="ml-3 sidebar-text">Settings</span>
+                        <span class="ml-3 sidebar-text">Configuración</span>
                     </a>
                     <a href="/profile" class="sidebar-menu-item flex items-center h-10 px-3 rounded-md text-sm font-medium {{ request()->is('profile') ? 'bg-sidebar-accent text-sidebar-accent-foreground' : 'hover:bg-sidebar-border/50' }} transition-colors">
                         <i class="fas fa-user-circle w-5 h-5"></i>
-                        <span class="ml-3 sidebar-text">Profile</span>
+                        <span class="ml-3 sidebar-text">Perfil</span>
                     </a>
                 </div>
                 
@@ -100,7 +106,7 @@
                         @csrf
                         <button type="submit" class="sidebar-menu-item flex items-center h-10 w-full px-3 rounded-md text-sm font-medium text-red-400 hover:bg-red-500/10 transition-colors">
                             <i class="fas fa-sign-out-alt w-5 h-5"></i>
-                            <span class="ml-3 sidebar-text">Logout</span>
+                            <span class="ml-3 sidebar-text">Cerrar Sesión</span>
                         </button>
                     </form>
                 </div>

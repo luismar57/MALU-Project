@@ -6,14 +6,14 @@
         <!-- Header Section -->
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
             <div>
-                <h1 class="text-3xl font-bold text-white mb-2">Add New Product</h1>
-                <p class="text-gray-400">Create a new product in your inventory</p>
+                <h1 class="text-3xl font-bold text-white mb-2">Agregar Nuevo Producto</h1>
+                <p class="text-gray-400">Crear un nuevo producto en tu inventario</p>
             </div>
             <a href="{{ route('products.index') }}" class="mt-4 md:mt-0 bg-gray-700 hover:bg-gray-600 text-white font-medium py-2.5 px-5 rounded-lg flex items-center gap-2 transition-all duration-200">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
-                Back to Products
+                Volver a Productos
             </a>
         </div>
 
@@ -33,7 +33,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-rose-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span class="font-medium">Please correct the following errors:</span>
+                    <span class="font-medium">Por favor corrija los siguientes errores:</span>
                 </div>
                 <ul class="mt-2 ml-9 list-disc text-sm">
                     @foreach ($errors->all() as $error)
@@ -57,7 +57,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-400" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
                     </svg>
-                    Product Information
+                    Información del Producto
                 </h2>
             </div>
 
@@ -69,7 +69,7 @@
                     <div class="space-y-6">
                         <!-- Product Code -->
                         <div>
-                            <label for="pro_code" class="block text-sm font-medium text-gray-300 mb-1">Product Code <span class="text-rose-400">*</span></label>
+                            <label for="pro_code" class="block text-sm font-medium text-gray-300 mb-1">Código del Producto <span class="text-rose-400">*</span></label>
                             <input 
                                 type="text" 
                                 id="pro_code" 
@@ -77,7 +77,7 @@
                                 value="{{ old('pro_code') }}" 
                                 required
                                 class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
-                                placeholder="Enter product code"
+                                placeholder="Ingrese el código del producto"
                             >
                             @error('pro_code')
                                 <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
@@ -86,7 +86,7 @@
 
                         <!-- Product Name -->
                         <div>
-                            <label for="pro_name" class="block text-sm font-medium text-gray-300 mb-1">Product Name <span class="text-rose-400">*</span></label>
+                            <label for="pro_name" class="block text-sm font-medium text-gray-300 mb-1">Nombre del Producto <span class="text-rose-400">*</span></label>
                             <input 
                                 type="text" 
                                 id="pro_name" 
@@ -94,7 +94,7 @@
                                 value="{{ old('pro_name') }}" 
                                 required
                                 class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
-                                placeholder="Enter product name"
+                                placeholder="Ingrese el nombre del producto"
                             >
                             @error('pro_name')
                                 <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
@@ -103,13 +103,13 @@
 
                         <!-- Category -->
                         <div>
-                            <label for="category_id" class="block text-sm font-medium text-gray-300 mb-1">Category</label>
+                            <label for="category_id" class="block text-sm font-medium text-gray-300 mb-1">Categoría</label>
                             <select 
                                 name="category_id" 
                                 id="category_id"
                                 class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
                             >
-                                <option value="" {{ old('category_id') === null ? 'selected' : '' }}>Select a Category (Optional)</option>
+                                <option value="" {{ old('category_id') === null ? 'selected' : '' }}>Seleccione una Categoría (Opcional)</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->cat_id }}" {{ old('category_id') == $category->cat_id ? 'selected' : '' }}>
                                         {{ $category->cat_name }}
@@ -125,7 +125,7 @@
                         <div class="grid grid-cols-2 gap-4">
                             <!-- Price -->
                             <div>
-                                <label for="price" class="block text-sm font-medium text-gray-300 mb-1">Price <span class="text-rose-400">*</span></label>
+                                <label for="price" class="block text-sm font-medium text-gray-300 mb-1">Precio <span class="text-rose-400">*</span></label>
                                 <div class="relative">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <span class="text-gray-400">$</span>
@@ -149,7 +149,7 @@
 
                             <!-- Discount -->
                             <div>
-                                <label for="discount" class="block text-sm font-medium text-gray-300 mb-1">Discount</label>
+                                <label for="discount" class="block text-sm font-medium text-gray-300 mb-1">Descuento</label>
                                 <div class="relative">
                                     <input 
                                         type="number" 
@@ -173,7 +173,7 @@
 
                         <!-- Quantity -->
                         <div>
-                            <label for="qty" class="block text-sm font-medium text-gray-300 mb-1">Quantity <span class="text-rose-400">*</span></label>
+                            <label for="qty" class="block text-sm font-medium text-gray-300 mb-1">Cantidad <span class="text-rose-400">*</span></label>
                             <input 
                                 type="number" 
                                 id="qty" 
@@ -182,7 +182,7 @@
                                 required 
                                 min="0"
                                 class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
-                                placeholder="Enter quantity"
+                                placeholder="Ingrese la cantidad"
                             >
                             @error('qty')
                                 <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
@@ -194,13 +194,13 @@
                     <div class="space-y-6">
                         <!-- Description -->
                         <div>
-                            <label for="description" class="block text-sm font-medium text-gray-300 mb-1">Description</label>
+                            <label for="description" class="block text-sm font-medium text-gray-300 mb-1">Descripción</label>
                             <textarea 
                                 id="description" 
                                 name="description"
                                 rows="4"
                                 class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
-                                placeholder="Enter product description"
+                                placeholder="Ingrese la descripción del producto"
                             >{{ old('description') }}</textarea>
                             @error('description')
                                 <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
@@ -209,7 +209,7 @@
 
                         <!-- Image Upload -->
                         <div>
-                            <label for="image" class="block text-sm font-medium text-gray-300 mb-1">Product Image (Upload)</label>
+                            <label for="image" class="block text-sm font-medium text-gray-300 mb-1">Imagen del Producto (Cargar)</label>
                             <div id="upload-area" class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-700 border-dashed rounded-lg hover:border-cyan-500 transition-colors duration-200 cursor-pointer">
                                 <div class="space-y-1 text-center">
                                     <div id="upload-content">
@@ -218,18 +218,18 @@
                                         </svg>
                                         <div class="flex text-sm text-gray-400">
                                             <label for="image" class="relative cursor-pointer bg-gray-800 rounded-md font-medium text-cyan-400 hover:text-cyan-300 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500">
-                                                <span class="px-2">Upload a file</span>
+                                                <span class="px-2">Subir un archivo</span>
                                                 <input id="image" name="image" type="file" accept="image/*" class="sr-only">
                                             </label>
-                                            <p class="pl-1">or drag and drop</p>
+                                            <p class="pl-1">o arrastrar y soltar</p>
                                         </div>
-                                        <p class="text-xs text-gray-500">PNG, JPG, GIF up to 2MB</p>
+                                        <p class="text-xs text-gray-500">PNG, JPG, GIF hasta 2MB</p>
                                     </div>
                                     <!-- Image Preview -->
                                     <div id="image-preview" class="hidden">
                                         <img id="preview-img" src="" alt="Preview" class="mx-auto max-h-32 rounded-lg">
                                         <p id="file-name" class="text-sm text-gray-400 mt-2"></p>
-                                        <button type="button" id="remove-image" class="mt-2 text-xs text-rose-400 hover:text-rose-300">Remove image</button>
+                                        <button type="button" id="remove-image" class="mt-2 text-xs text-rose-400 hover:text-rose-300">Eliminar imagen</button>
                                     </div>
                                 </div>
                             </div>
@@ -240,7 +240,7 @@
 
                         <!-- Image URL -->
                         <div>
-                            <label for="image_url" class="block text-sm font-medium text-gray-300 mb-1">Product Image (URL)</label>
+                            <label for="image_url" class="block text-sm font-medium text-gray-300 mb-1">Imagen del Producto (URL)</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
@@ -252,11 +252,11 @@
                                     id="image_url" 
                                     name="image_url" 
                                     value="{{ old('image_url') }}"
-                                    placeholder="https://example.com/image.jpg"
+                                    placeholder="https://ejemplo.com/imagen.jpg"
                                     class="w-full pl-10 pr-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
                                 >
                             </div>
-                            <p class="mt-1 text-xs text-gray-500">Enter an external image URL or upload an image above. URL takes precedence if both are provided.</p>
+                            <p class="mt-1 text-xs text-gray-500">Ingrese una URL de imagen externa o cargue una imagen arriba. La URL tiene prioridad si se proporcionan ambas.</p>
                             @error('image_url')
                                 <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
                             @enderror
@@ -273,7 +273,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
                         </svg>
-                        Add Product
+                        Agregar Producto
                     </button>
                     <a 
                         href="{{ route('products.index') }}"
@@ -282,7 +282,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
-                        Cancel
+                        Cancelar
                     </a>
                 </div>
             </form>
@@ -395,13 +395,13 @@
         function handleImageFile(file) {
             // Check file size (2MB limit)
             if (file.size > 2 * 1024 * 1024) {
-                alert('File size must be less than 2MB');
+                alert('El tamaño del archivo debe ser menor a 2MB');
                 return;
             }
             
             // Check file type
             if (!['image/jpeg', 'image/png', 'image/gif', 'image/webp'].includes(file.type)) {
-                alert('Please select a valid image file (JPEG, PNG, GIF, WebP)');
+                alert('Por favor seleccione un archivo de imagen válido (JPEG, PNG, GIF, WebP)');
                 return;
             }
             

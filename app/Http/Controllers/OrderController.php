@@ -13,6 +13,78 @@ use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
+    // Web Admin Methods
+    public function index(Request $request)
+    {
+        $query = Order::with(['items.product', 'user'])->orderBy('created_at', 'desc');
+
+        // Filter by status
+        if ($request->has('status') && $request->status !== 'all') {
+            $query->where('status', $request->status);
+        }
+
+        // Search by email or order ID
+        if ($request->has('search') && $request->search !== '') {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('id', 'like', "%$search%")
+                  ->orWhere('email', 'like', "%$search%");
+            });
+        }
+
+        $orders = $query->paginate(15);
+
+        return view('orders.index', compact('orders'));
+    }
+
+    public function show(Order $order)
+    {
+        $order->load(['items.product', 'user']);
+        return view('orders.show', compact('order'));
+    }
+
+    public function updateStatus(Request $request, Order $order)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,processing,completed,cancelled'
+        ]);
+
+        $oldStatus = $order->status;
+        $newStatus = $request->status;
+
+        // If changing to cancelled, restore product quantities
+        if ($newStatus === 'cancelled' && $oldStatus !== 'cancelled') {
+            DB::transaction(function () use ($order) {
+                foreach ($order->items as $item) {
+                    $product = Product::find($item->product_id);
+                    if ($product) {
+                        $product->increment('qty', $item->quantity);
+                    }
+                }
+            });
+        }
+
+        // If changing from cancelled to another status, reduce product quantities
+        if ($oldStatus === 'cancelled' && $newStatus !== 'cancelled') {
+            DB::transaction(function () use ($order) {
+                foreach ($order->items as $item) {
+                    $product = Product::find($item->product_id);
+                    if ($product) {
+                        if ($product->qty < $item->quantity) {
+                            throw new \Exception("Stock insuficiente para el producto {$product->pro_name}");
+                        }
+                        $product->decrement('qty', $item->quantity);
+                    }
+                }
+            });
+        }
+
+        $order->update(['status' => $newStatus]);
+
+        return redirect()->back()->with('success', 'Estado del pedido actualizado exitosamente');
+    }
+
+    // Legacy Cart/Order Methods
     public function store(Request $request)
     {
         $this->authorize('create', Order::class);
@@ -26,7 +98,7 @@ class OrderController extends Controller
             ->get();
 
         if ($cartItems->isEmpty()) {
-            return redirect()->route(' seating arrangementart.index')->with('error', 'Cart is empty');
+            return redirect()->route(' seating arrangementart.index')->with('error', 'El carrito está vacío');
         }
 
         $validCartItems = $cartItems->filter(function ($item) {
@@ -34,12 +106,12 @@ class OrderController extends Controller
         });
 
         if ($validCartItems->isEmpty()) {
-            return redirect()->route('cart.index')->with('error', 'No valid products in cart');
+            return redirect()->route('cart.index')->with('error', 'No hay productos válidos en el carrito');
         }
 
         foreach ($validCartItems as $item) {
             if ($item->product->stock < $item->quantity) {
-                return redirect()->route('cart.index')->with('error', "Insufficient stock for {$item->product->name}");
+                return redirect()->route('cart.index')->with('error', "Stock insuficiente para {$item->product->name}");
             }
         }
 
@@ -70,14 +142,14 @@ class OrderController extends Controller
                 return $order;
             });
 
-            return redirect()->route('cart.show', $order)->with('success', 'Order placed successfully');
+            return redirect()->route('cart.show', $order)->with('success', 'Pedido realizado exitosamente');
         } catch (\Exception $e) {
             Log::error('Order creation failed: ' . $e->getMessage());
-            return redirect()->route('cart.index')->with('error', 'Failed to place order. Please try again.');
+            return redirect()->route('cart.index')->with('error', 'Error al realizar el pedido. Por favor intente nuevamente.');
         }
     }
 
-    public function show(Order $order)
+    public function cartShow(Order $order)
     {
         $this->authorize('view', $order);
         $order->load(['orderItems.product']);
@@ -128,7 +200,7 @@ class OrderController extends Controller
                 foreach ($request->items as $item) {
                     $product = Product::findOrFail($item['product_id']);
                     if ($product->stock < $item['quantity']) {
-                        throw new \Exception("Insufficient stock for {$product->name}");
+                        throw new \Exception("Stock insuficiente para {$product->name}");
                     }
                     $total += $product->discounted_price * $item['quantity'];
                     $itemsToKeep[] = $item['product_id'];
@@ -153,7 +225,7 @@ class OrderController extends Controller
                 }
             });
 
-            return redirect()->route('cart.index')->with('success', 'Order updated successfully');
+            return redirect()->route('cart.index')->with('success', 'Pedido actualizado exitosamente');
         } catch (\Exception $e) {
             Log::error('Order update failed: ' . $e->getMessage());
             return redirect()->route('cart.edit', $order)->with('error', $e->getMessage());
@@ -164,6 +236,6 @@ class OrderController extends Controller
     {
         $this->authorize('delete', $order);
         $order->delete();
-        return redirect()->route('cart.index')->with('success', 'Order deleted successfully');
+        return redirect()->route('cart.index')->with('success', 'Pedido eliminado exitosamente');
     }
 }

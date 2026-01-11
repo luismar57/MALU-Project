@@ -5,7 +5,7 @@
     <!-- Dashboard Header -->
     <div class="flex flex-col md:flex-row justify-between items-center mb-8">
         <div class="mb-4 md:mb-0">
-            <h1 class="text-3xl font-bold text-gray-100">Dashboard</h1>
+            <h1 class="text-3xl font-bold text-gray-100">Panel de Control</h1>
             <p class="text-gray-400 mt-1">Bienvenido de vuelta al panel de administración de MaluStore</p>
         </div>
         
@@ -19,7 +19,7 @@
             <div class="p-6">
                 <div class="flex justify-between items-start">
                     <div>
-                        <h2 class="text-gray-400 font-medium mb-1">Total Products</h2>
+                        <h2 class="text-gray-400 font-medium mb-1">Total de Productos</h2>
                         <p class="text-4xl font-bold text-white mb-3">{{ $totalProducts }}</p>
                         <div class="flex items-center text-sm">
                             <span class="text-emerald-400 flex items-center">
@@ -28,7 +28,7 @@
                                 </svg>
                                 +5%
                             </span>
-                            <span class="text-gray-500 ml-2">from last month</span>
+                            <span class="text-gray-500 ml-2">del mes pasado</span>
                         </div>
                     </div>
                     <div class="p-3 rounded-lg bg-cyan-600/10 border border-cyan-600/20">
@@ -46,7 +46,7 @@
             <div class="p-6">
                 <div class="flex justify-between items-start">
                     <div>
-                        <h2 class="text-gray-400 font-medium mb-1">Products in Stock</h2>
+                        <h2 class="text-gray-400 font-medium mb-1">Productos en Stock</h2>
                         <p class="text-4xl font-bold text-white mb-3">{{ $productsInStock }}</p>
                         <div class="flex items-center text-sm">
                             <span class="text-emerald-400 flex items-center">
@@ -55,7 +55,7 @@
                                 </svg>
                                 +10%
                             </span>
-                            <span class="text-gray-500 ml-2">from last month</span>
+                            <span class="text-gray-500 ml-2">del mes pasado</span>
                         </div>
                     </div>
                     <div class="p-3 rounded-lg bg-emerald-600/10 border border-emerald-600/20">
@@ -73,7 +73,7 @@
             <div class="p-6">
                 <div class="flex justify-between items-start">
                     <div>
-                        <h2 class="text-gray-400 font-medium mb-1">Low Stock Products</h2>
+                        <h2 class="text-gray-400 font-medium mb-1">Productos con Bajo Stock</h2>
                         <p class="text-4xl font-bold text-white mb-3">{{ $lowStockProducts }}</p>
                         <div class="flex items-center text-sm">
                             <span class="text-rose-400 flex items-center">
@@ -82,7 +82,7 @@
                                 </svg>
                                 -2%
                             </span>
-                            <span class="text-gray-500 ml-2">from last month</span>
+                            <span class="text-gray-500 ml-2">del mes pasado</span>
                         </div>
                     </div>
                     <div class="p-3 rounded-lg bg-amber-600/10 border border-amber-600/20">
@@ -101,21 +101,21 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-400" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
             </svg>
-            Ecuador Calendar & Time
+            Calendario y hora de Ecuador
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Calendar -->
             <div class="bg-gray-900/70 rounded-xl border border-gray-700/50 p-5 shadow-inner">
                 <div class="text-center">
-                    <p class="font-bold mb-4 text-gray-200">April 2025</p>
+                    <p class="font-bold mb-4 text-gray-200">Abril de 2025</p>
                     <div class="grid grid-cols-7 gap-1 text-xs">
-                        <div class="font-medium text-gray-400 p-2">Sun</div>
-                        <div class="font-medium text-gray-400 p-2">Mon</div>
-                        <div class="font-medium text-gray-400 p-2">Tue</div>
-                        <div class="font-medium text-gray-400 p-2">Wed</div>
-                        <div class="font-medium text-gray-400 p-2">Thu</div>
-                        <div class="font-medium text-gray-400 p-2">Fri</div>
-                        <div class="font-medium text-gray-400 p-2">Sat</div>
+                        <div class="font-medium text-gray-400 p-2">Dom</div>
+                        <div class="font-medium text-gray-400 p-2">Lun</div>
+                        <div class="font-medium text-gray-400 p-2">Mar</div>
+                        <div class="font-medium text-gray-400 p-2">Mié</div>
+                        <div class="font-medium text-gray-400 p-2">Jue</div>
+                        <div class="font-medium text-gray-400 p-2">Vie</div>
+                        <div class="font-medium text-gray-400 p-2">Sáb</div>
                         
                         <!-- Sample days (replace with dynamic calendar) -->
                         <div class="p-2"></div>
@@ -182,11 +182,11 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-400" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
                 </svg>
-                Products List
+                Lista de Productos
             </h2>
             <div class="flex items-center gap-2">
                 <div class="relative">
-                    <input type="text" placeholder="Search products..." class="bg-gray-900/70 border border-gray-700/50 rounded-lg py-2 pl-10 pr-4 text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent">
+                    <input type="text" placeholder="Buscar productos..." class="bg-gray-900/70 border border-gray-700/50 rounded-lg py-2 pl-10 pr-4 text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 absolute left-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
@@ -195,7 +195,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                     </svg>
-                    Add Product
+                    Agregar Producto
                 </button>
             </div>
         </div>
@@ -204,13 +204,13 @@
             <table class="w-full">
                 <thead>
                     <tr class="bg-gray-900/70 text-gray-400 text-sm">
-                        <th class="py-3 px-4 text-left font-medium">Image</th>
-                        <th class="py-3 px-4 text-left font-medium">Code</th>
-                        <th class="py-3 px-4 text-left font-medium">Name</th>
-                        <th class="py-3 px-4 text-left font-medium">Category</th>
-                        <th class="py-3 px-4 text-left font-medium">Quantity</th>
-                        <th class="py-3 px-4 text-left font-medium">Price</th>
-                        <th class="py-3 px-4 text-left font-medium">Actions</th>
+                        <th class="py-3 px-4 text-left font-medium">Imagen</th>
+                        <th class="py-3 px-4 text-left font-medium">Código</th>
+                        <th class="py-3 px-4 text-left font-medium">Nombre</th>
+                        <th class="py-3 px-4 text-left font-medium">Categoría</th>
+                        <th class="py-3 px-4 text-left font-medium">Cantidad</th>
+                        <th class="py-3 px-4 text-left font-medium">Precio</th>
+                        <th class="py-3 px-4 text-left font-medium">Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-800">
@@ -237,7 +237,7 @@
                             <td class="py-3 px-4 text-gray-200 font-medium">{{ $product->pro_name }}</td>
                             <td class="py-3 px-4 text-gray-300">
                                 <span class="px-2 py-1 bg-gray-800 rounded-md text-xs font-medium">
-                                    {{ $product->category ? $product->category->cat_name : 'No Category' }}
+                                    {{ $product->category ? $product->category->cat_name : 'Sin Categoría' }}
                                 </span>
                             </td>
                             <td class="py-3 px-4 text-gray-300">
@@ -246,7 +246,7 @@
                                 @elseif($product->qty > 0)
                                     <span class="text-amber-400">{{ $product->qty }}</span>
                                 @else
-                                    <span class="text-rose-400">Out of stock</span>
+                                    <span class="text-rose-400">Sin stock</span>
                                 @endif
                             </td>
                             <td class="py-3 px-4 text-gray-300">${{ number_format($product->price, 2) }}</td>
@@ -257,7 +257,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                         </svg>
                                     </a>
-                                    <form action="{{ route('products.destroy', $product->pro_id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                    <form action="{{ route('products.destroy', $product->pro_id) }}" method="POST" onsubmit="return confirm('¿Está seguro de que desea eliminar este producto?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="p-2 bg-rose-600/10 hover:bg-rose-600/20 text-rose-400 rounded-md transition-colors">
@@ -271,7 +271,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="py-6 text-center text-gray-500">No products found.</td>
+                            <td colspan="7" class="py-6 text-center text-gray-500">No se encontraron productos.</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -282,11 +282,11 @@
         <div class="p-4 border-t border-gray-700/50 bg-gray-900/30">
             <div class="flex items-center justify-between">
                 <div class="text-sm text-gray-500">
-                    Showing <span class="font-medium text-gray-300">1</span> to <span class="font-medium text-gray-300">10</span> of <span class="font-medium text-gray-300">{{ count($products) }}</span> products
+                    Mostrando <span class="font-medium text-gray-300">1</span> a <span class="font-medium text-gray-300">10</span> de <span class="font-medium text-gray-300">{{ count($products) }}</span> productos
                 </div>
                 <div class="flex gap-2">
                     <button class="px-3 py-1 rounded bg-gray-800 text-gray-400 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed">
-                        Previous
+                        Anterior
                     </button>
                     <button class="px-3 py-1 rounded bg-cyan-600/20 text-cyan-400 font-medium">
                         1
@@ -295,7 +295,7 @@
                         2
                     </button>
                     <button class="px-3 py-1 rounded bg-gray-800 text-gray-400 hover:bg-gray-700">
-                        Next
+                        Siguiente
                     </button>
                 </div>
             </div>

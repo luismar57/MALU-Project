@@ -44,6 +44,6 @@ class SettingController extends Controller
         ]);
 
         // Redirect back with a success message
-        return redirect()->route('settings.index')->with('success', 'Settings updated successfully!');
+        return redirect()->route('settings.index')->with('success', '¡Configuración actualizada exitosamente!');
     }
 }

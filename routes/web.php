@@ -42,9 +42,14 @@ Route::middleware('auth')->group(function () {
     // Slide Hero Routes
     Route::resource('slide-heroes', SlideHeroController::class);
 
+    // Orders Management Routes
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+    Route::put('/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+
     // Cart/Order Routes
     Route::get('/cart', [PurchaseController::class, 'index'])->name('cart.index');
-    Route::get('/cart/{order}', [OrderController::class, 'show'])->name('cart.show');
+    Route::get('/cart/{order}', [OrderController::class, 'cartShow'])->name('cart.show');
     Route::get('/cart/create', [OrderController::class, 'create'])->name('cart.create');
     Route::post('/cart', [OrderController::class, 'store'])->name('cart.store');
     Route::get('/cart/{order}/edit', [OrderController::class, 'edit'])->name('cart.edit');

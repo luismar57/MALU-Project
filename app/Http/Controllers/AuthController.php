@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -20,11 +23,11 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard')->with('success', 'Login successful');
+            return redirect()->intended('/dashboard')->with('success', 'Inicio de sesión exitoso');
         }
 
         return back()->withErrors([
-            'email' => 'Invalid credentials. Please try again.',
+            'email' => 'Credenciales inválidas. Por favor intente nuevamente.',
         ]);
     }
 
@@ -34,7 +37,7 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/login')->with('success', 'Logged out successfully');
+        return redirect('/login')->with('success', 'Sesión cerrada exitosamente');
     }
 
     // Web register method (unchanged)
@@ -54,7 +57,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect('/dashboard')->with('success', 'Registration successful');
+        return redirect('/dashboard')->with('success', 'Registro exitoso');
     }
 
     // API login method
@@ -71,7 +74,7 @@ class AuthController extends Controller
             if (!$user instanceof User) {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Authentication failed',
+                    'message' => 'Autenticación fallida',
                 ], 401);
             }
             $token = $user->createToken('auth_token')->plainTextToken;
@@ -89,7 +92,7 @@ class AuthController extends Controller
     
         return response()->json([
             'status' => 'error',
-            'message' => 'Invalid credentials',
+            'message' => 'Credenciales inválidas',
         ], 401);
     }
     
@@ -105,7 +108,7 @@ class AuthController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Successfully logged out',
+            'message' => 'Sesión cerrada exitosamente',
         ], 200);
     }
 
@@ -121,7 +124,7 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Validation failed',
+                'message' => 'Validación fallida',
                 'errors' => $validator->errors(),
             ], 422);
         }
@@ -137,7 +140,7 @@ class AuthController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Registration successful',
+            'message' => 'Registro exitoso',
             'data' => [
                 'id' => $user->id,
                 'name' => $user->name,
@@ -172,7 +175,7 @@ public function addUser(Request $request)
     ]);
 
     return response()->json([
-        'message' => 'User added successfully',
+        'message' => 'Usuario agregado exitosamente',
         'user' => $user,
     ], 201);
 }
@@ -185,14 +188,14 @@ public function deleteUser($id)
 
     if (!$user) {
         return response()->json([
-            'message' => 'User not found'
+            'message' => 'Usuario no encontrado'
         ], 404);
     }
 
     $user->delete();
 
     return response()->json([
-        'message' => 'User deleted successfully'
+        'message' => 'Usuario eliminado exitosamente'
     ]);
 }
 
@@ -203,7 +206,7 @@ public function updateUser(Request $request, $id)
 
     if (!$user) {
         return response()->json([
-            'message' => 'User not found'
+            'message' => 'Usuario no encontrado'
         ], 404);
     }
 
@@ -223,9 +226,76 @@ public function updateUser(Request $request, $id)
     $user->save();
 
     return response()->json([
-        'message' => 'User updated successfully',
+        'message' => 'Usuario actualizado exitosamente',
         'user' => $user
     ]);
+}
+
+public function forgotPassword(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'email' => 'required|email|exists:users,email',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $validator->errors()->first()
+        ], 400);
+    }
+
+    $status = Password::sendResetLink($request->only('email'));
+
+    if ($status === Password::RESET_LINK_SENT) {
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Enlace de recuperación enviado a tu correo'
+        ], 200);
+    }
+
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Error al enviar el correo de recuperación'
+    ], 500);
+}
+
+public function resetPassword(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|min:6|confirmed',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $validator->errors()->first()
+        ], 400);
+    }
+
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function (User $user, string $password) {
+            $user->forceFill([
+                'password' => Hash::make($password)
+            ])->setRememberToken(Str::random(60));
+            $user->save();
+            event(new PasswordReset($user));
+        }
+    );
+
+    if ($status === Password::PASSWORD_RESET) {
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Contraseña actualizada exitosamente'
+        ], 200);
+    }
+
+    return response()->json([
+        'status' => 'error',
+        'message' => 'Token inválido o expirado'
+    ], 400);
 }
 
     

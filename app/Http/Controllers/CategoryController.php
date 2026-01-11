@@ -29,7 +29,7 @@ class CategoryController extends Controller
         Category::create($validated);
 
         return redirect()->route('categories.index')
-            ->with('success', 'Category created successfully.');
+            ->with('success', 'Categoría creada exitosamente.');
     }
 
     public function show(Category $category)
@@ -68,7 +68,7 @@ class CategoryController extends Controller
         $category->update($validated);
 
         return redirect()->route('categories.index')
-            ->with('success', 'Category updated successfully.');
+            ->with('success', 'Categoría actualizada exitosamente.');
     }
 
     public function destroy(Category $category)
@@ -76,10 +76,10 @@ class CategoryController extends Controller
         try {
             $category->delete();
             return redirect()->route('categories.index')
-                ->with('success', 'Category deleted successfully.');
+                ->with('success', 'Categoría eliminada exitosamente.');
         } catch (\Exception $e) {
             return redirect()->route('categories.index')
-                ->with('error', 'Cannot delete category because it is linked to products.');
+                ->with('error', 'No se puede eliminar la categoría porque está vinculada a productos.');
         }
     }
 
@@ -108,7 +108,7 @@ class CategoryController extends Controller
         $category = Category::withTrashed()->findOrFail($cat_id);
         $category->restore();
         return redirect()->route('categories.index')
-            ->with('success', 'Category restored successfully.');
+            ->with('success', 'Categoría restaurada exitosamente.');
     }
 
     // API Methods
@@ -141,7 +141,7 @@ class CategoryController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Validation failed',
+                'message' => 'Validación fallida',
                 'errors' => $validator->errors(),
             ], 422);
         }
@@ -152,7 +152,7 @@ class CategoryController extends Controller
         return response()->json([
             'status' => 'success',
             'data' => $category,
-            'message' => 'Category updated successfully.',
+            'message' => 'Categoría actualizada exitosamente.',
         ], 200);
     }
 
@@ -164,12 +164,12 @@ class CategoryController extends Controller
             $category->delete();
             return response()->json([
                 'status' => 'success',
-                'message' => 'Category deleted successfully.',
+                'message' => 'Categoría eliminada exitosamente.',
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Cannot delete category because it is linked to products.',
+                'message' => 'No se puede eliminar la categoría porque está vinculada a productos.',
             ], 400);
         }
     }

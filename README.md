@@ -7,7 +7,7 @@
 - **Tecnología**: Laravel 12.x + PHP 8.2
 - **Base de Datos**: SQLite
 - **Frontend**: Vite + TailwindCSS
-- **Desarrolladores**: Tu Muoyhak, Rin Sreynich & Cheoun Daro
+- **Desarrolladores**: Luis Muñoz
 
 ---
 
@@ -194,35 +194,30 @@ public function run()
 
 ### **Pasos de Instalación**
 
-1. **Clonar el Repositorio**
-   ```bash
-   git clone https://github.com/ThyMuoyhak/DeliciousEats-Backend-Laravel.git
-   cd DeliciousEats-Backend-Laravel
-   ```
 
-2. **Instalar Dependencias PHP**
+1. **Instalar Dependencias PHP**
    ```bash
    composer install
    ```
 
-3. **Configurar Entorno**
+2. **Configurar Entorno**
    ```bash
    cp .env.example .env
    php artisan key:generate
    ```
 
-4. **Configurar Base de Datos**
+3. **Configurar Base de Datos**
    ```bash
    php artisan migrate
    php artisan db:seed
    ```
 
-5. **Crear Enlace de Storage**
+4. **Crear Enlace de Storage**
    ```bash
    php artisan storage:link
    ```
 
-6. **Instalar Dependencias Node**
+5. **Instalar Dependencias Node**
    ```bash
    npm install
    ```

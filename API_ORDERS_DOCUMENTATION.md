@@ -290,6 +290,220 @@ Accept: application/json
 
 ---
 
+## 👨‍💼 Endpoints de Administración (Requieren Autenticación)
+
+Estos endpoints permiten a los administradores gestionar TODOS los pedidos del sistema.
+
+### 1. Ver Todas las Órdenes (Admin)
+
+```http
+GET /api/admin/orders
+Authorization: Bearer {admin_token}
+Accept: application/json
+```
+
+**Parámetros de consulta opcionales:**
+- `status` - Filtrar por estado: `pending`, `processing`, `completed`, `cancelled`
+- `from_date` - Fecha desde (formato: YYYY-MM-DD)
+- `to_date` - Fecha hasta (formato: YYYY-MM-DD)
+- `search` - Buscar por ID de orden o email
+- `per_page` - Resultados por página (default: 15)
+- `page` - Número de página
+
+**Ejemplos:**
+```http
+GET /api/admin/orders?status=pending
+GET /api/admin/orders?from_date=2025-01-01&to_date=2025-01-31
+GET /api/admin/orders?search=cliente@example.com
+GET /api/admin/orders?per_page=20&page=2
+```
+
+**Respuesta Exitosa (200):**
+```json
+{
+  "status": "success",
+  "data": {
+    "current_page": 1,
+    "data": [
+      {
+        "id": 123,
+        "user": {
+          "id": 5,
+          "name": "Juan Pérez",
+          "email": "juan@example.com"
+        },
+        "total": 150.75,
+        "subtotal": 125.50,
+        "tax": 12.55,
+        "shipping": 10.00,
+        "discount": 5.00,
+        "status": "pending",
+        "payment_method": "cod",
+        "email": "juan@example.com",
+        "promo_code": "DESCUENTO10",
+        "notes": "Entregar en la tarde",
+        "items_count": 3,
+        "created_at": "2025-01-05T14:30:00.000000Z",
+        "updated_at": "2025-01-05T14:30:00.000000Z"
+      }
+    ],
+    "first_page_url": "http://127.0.0.1:8000/api/admin/orders?page=1",
+    "from": 1,
+    "last_page": 5,
+    "last_page_url": "http://127.0.0.1:8000/api/admin/orders?page=5",
+    "next_page_url": "http://127.0.0.1:8000/api/admin/orders?page=2",
+    "path": "http://127.0.0.1:8000/api/admin/orders",
+    "per_page": 15,
+    "prev_page_url": null,
+    "to": 15,
+    "total": 73
+  }
+}
+```
+
+---
+
+### 2. Ver Detalle de una Orden (Admin)
+
+```http
+GET /api/admin/orders/{id}
+Authorization: Bearer {admin_token}
+Accept: application/json
+```
+
+**Ejemplo:**
+```http
+GET /api/admin/orders/123
+```
+
+**Respuesta Exitosa (200):**
+```json
+{
+  "status": "success",
+  "data": {
+    "id": 123,
+    "user": {
+      "id": 5,
+      "name": "Juan Pérez",
+      "email": "juan@example.com"
+    },
+    "total": 150.75,
+    "subtotal": 125.50,
+    "tax": 12.55,
+    "shipping": 10.00,
+    "discount": 5.00,
+    "status": "pending",
+    "payment_method": "cod",
+    "email": "juan@example.com",
+    "promo_code": "DESCUENTO10",
+    "notes": "Entregar en la tarde",
+    "created_at": "2025-01-05T14:30:00.000000Z",
+    "updated_at": "2025-01-05T14:30:00.000000Z",
+    "items": [
+      {
+        "id": 1,
+        "product_id": 10,
+        "product_name": "Producto ABC",
+        "product_code": "PROD-001",
+        "quantity": 2,
+        "price": 50.00,
+        "discount": 0.00,
+        "subtotal": 100.00
+      },
+      {
+        "id": 2,
+        "product_id": 15,
+        "product_name": "Producto XYZ",
+        "product_code": "PROD-002",
+        "quantity": 1,
+        "price": 25.50,
+        "discount": 10.00,
+        "subtotal": 25.50
+      }
+    ]
+  }
+}
+```
+
+**Error (404):**
+```json
+{
+  "status": "error",
+  "message": "Order not found"
+}
+```
+
+---
+
+### 3. Cambiar Estado de una Orden (Admin)
+
+```http
+PUT /api/admin/orders/{id}/status
+Authorization: Bearer {admin_token}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "status": "processing"
+}
+```
+
+**Estados permitidos:**
+- `pending` - Pendiente
+- `processing` - En proceso
+- `completed` - Completada
+- `cancelled` - Cancelada
+
+**Ejemplo:**
+```http
+PUT /api/admin/orders/123/status
+Content-Type: application/json
+
+{
+  "status": "completed"
+}
+```
+
+**Respuesta Exitosa (200):**
+```json
+{
+  "status": "success",
+  "message": "Order status updated successfully",
+  "data": {
+    "order_id": 123,
+    "old_status": "processing",
+    "new_status": "completed"
+  }
+}
+```
+
+**Errores Posibles:**
+
+**Validación fallida (422):**
+```json
+{
+  "status": "error",
+  "message": "Validation failed",
+  "errors": {
+    "status": ["The selected status is invalid."]
+  }
+}
+```
+
+**Stock insuficiente al reactivar orden (500):**
+```json
+{
+  "status": "error",
+  "message": "Failed to update order status: Insufficient stock for product Producto ABC"
+}
+```
+
+**Nota importante:** 
+- Cuando cambias una orden a `cancelled`, el stock de los productos se restaura automáticamente
+- Si cambias una orden `cancelled` a otro estado, el stock se reduce nuevamente (si hay disponibilidad)
+
+---
+
 ## 🌐 Configuración CORS
 
 El backend está configurado para aceptar requests desde:
@@ -403,6 +617,91 @@ const cancelOrder = async (orderId) => {
   }
   throw new Error(data.message);
 };
+```
+
+### Obtener Todas las Órdenes (Admin)
+```javascript
+const getAllOrders = async (filters = {}) => {
+  const token = localStorage.getItem('token');
+  
+  // Construir query string
+  const params = new URLSearchParams();
+  if (filters.status) params.append('status', filters.status);
+  if (filters.from_date) params.append('from_date', filters.from_date);
+  if (filters.to_date) params.append('to_date', filters.to_date);
+  if (filters.search) params.append('search', filters.search);
+  if (filters.page) params.append('page', filters.page);
+  if (filters.per_page) params.append('per_page', filters.per_page);
+  
+  const url = `http://127.0.0.1:8000/api/admin/orders${params.toString() ? '?' + params.toString() : ''}`;
+  
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  
+  const data = await response.json();
+  
+  if (response.ok) {
+    return data.data; // Returns paginated data
+  }
+  throw new Error(data.message);
+};
+
+// Ejemplo de uso:
+// const orders = await getAllOrders({ status: 'pending', page: 1, per_page: 20 });
+```
+
+### Ver Detalle de Orden (Admin)
+```javascript
+const getOrderDetail = async (orderId) => {
+  const token = localStorage.getItem('token');
+  
+  const response = await fetch(`http://127.0.0.1:8000/api/admin/orders/${orderId}`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  
+  const data = await response.json();
+  
+  if (response.ok) {
+    return data.data;
+  }
+  throw new Error(data.message);
+};
+```
+
+### Cambiar Estado de Orden (Admin)
+```javascript
+const updateOrderStatus = async (orderId, newStatus) => {
+  const token = localStorage.getItem('token');
+  
+  const response = await fetch(`http://127.0.0.1:8000/api/admin/orders/${orderId}/status`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ status: newStatus })
+  });
+  
+  const data = await response.json();
+  
+  if (response.ok) {
+    return data;
+  }
+  throw new Error(data.message);
+};
+
+// Ejemplo de uso:
+// await updateOrderStatus(123, 'completed');
 ```
 
 ---

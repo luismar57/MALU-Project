@@ -49,8 +49,8 @@
         </div>
       </div>
       
-      <h2 class="text-3xl font-bold text-center mb-2 text-white" data-aos="fade-down" data-aos-delay="300">Create Account</h2>
-      <p class="text-center text-gray-400 mb-6" data-aos="fade-down" data-aos-delay="400">Join our community today</p>
+      <h2 class="text-3xl font-bold text-center mb-2 text-white" data-aos="fade-down" data-aos-delay="300">Crear Cuenta</h2>
+      <p class="text-center text-gray-400 mb-6" data-aos="fade-down" data-aos-delay="400">Únase a nuestra comunidad hoy</p>
 
       <!-- Progress Bar -->
       <div class="mb-6" data-aos="fade-right" data-aos-delay="500">
@@ -64,7 +64,7 @@
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
             </div>
-            <span class="text-xs text-gray-400 mt-1">Account</span>
+            <span class="text-xs text-gray-400 mt-1">Cuenta</span>
           </div>
           <div class="flex flex-col items-center">
             <div id="step-2" class="step-indicator w-6 h-6 rounded-full border-2 border-gray-500 flex items-center justify-center">
@@ -72,7 +72,7 @@
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
             </div>
-            <span class="text-xs text-gray-400 mt-1">Security</span>
+            <span class="text-xs text-gray-400 mt-1">Seguridad</span>
           </div>
           <div class="flex flex-col items-center">
             <div id="step-3" class="step-indicator w-6 h-6 rounded-full border-2 border-gray-500 flex items-center justify-center">
@@ -80,7 +80,7 @@
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
             </div>
-            <span class="text-xs text-gray-400 mt-1">Complete</span>
+            <span class="text-xs text-gray-400 mt-1">Completar</span>
           </div>
         </div>
       </div>
@@ -97,7 +97,7 @@
         <div id="step1-fields">
           <!-- Full Name -->
           <div class="relative mb-5">
-            <label class="block text-sm font-medium mb-1 text-gray-300">Full Name</label>
+            <label class="block text-sm font-medium mb-1 text-gray-300">Nombre Completo</label>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -109,7 +109,7 @@
                 id="name"
                 name="name"
                 class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-800/70 border border-gray-700 placeholder-gray-500 text-gray-100 transition-all input-focus focus:outline-none focus:ring-2 focus:ring-accent-blue"
-                placeholder="Your full name"
+                placeholder="Su nombre completo"
                 required
               />
             </div>
@@ -117,7 +117,7 @@
           
           <!-- Email -->
           <div class="relative mb-5">
-            <label class="block text-sm font-medium mb-1 text-gray-300">Email Address</label>
+            <label class="block text-sm font-medium mb-1 text-gray-300">Dirección de Correo Electrónico</label>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -129,7 +129,7 @@
                 id="email"
                 name="email"
                 class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-800/70 border border-gray-700 placeholder-gray-500 text-gray-100 transition-all input-focus focus:outline-none focus:ring-2 focus:ring-accent-blue"
-                placeholder="your@email.com"
+                placeholder="tu@correo.com"
                 required
               />
             </div>
@@ -153,7 +153,7 @@
         <div id="step2-fields" class="hidden">
           <!-- Password -->
           <div class="relative mb-5">
-            <label class="block text-sm font-medium mb-1 text-gray-300">Password</label>
+            <label class="block text-sm font-medium mb-1 text-gray-300">Contraseña</label>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -178,8 +178,8 @@
             <!-- Password strength indicator -->
             <div class="mt-1">
               <div class="flex justify-between mb-1">
-                <span class="text-xs text-gray-400">Password strength:</span>
-                <span id="password-strength" class="text-xs text-gray-400">Weak</span>
+                <span class="text-xs text-gray-400">Seguridad de la contraseña:</span>
+                <span id="password-strength" class="text-xs text-gray-400">Débil</span>
               </div>
               <div class="w-full bg-gray-700 rounded-full h-1">
                 <div id="password-strength-bar" class="h-1 rounded-full bg-red-500" style="width: 10%"></div>
@@ -189,7 +189,7 @@
           
           <!-- Confirm Password -->
           <div class="relative mb-5">
-            <label class="block text-sm font-medium mb-1 text-gray-300">Confirm Password</label>
+            <label class="block text-sm font-medium mb-1 text-gray-300">Confirmar Contraseña</label>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -216,7 +216,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
               </svg>
-              <span>Back</span>
+              <span>Atrás</span>
             </button>
             
             <button
@@ -224,7 +224,7 @@
               id="next-step-2"
               class="px-6 py-3 bg-gradient-to-r from-accent-blue to-accent-hover rounded-lg font-semibold text-white transition-all shadow-glow focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center justify-center"
             >
-              <span>Next</span>
+              <span>Siguiente</span>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
@@ -241,7 +241,7 @@
                 <input id="terms" name="terms" type="checkbox" class="h-4 w-4 text-accent-blue focus:ring-accent-blue border-gray-600 rounded bg-gray-700" required>
               </div>
               <div class="ml-3 text-sm">
-                <label for="terms" class="text-gray-300">I agree to the <a href="#" class="text-accent-blue hover:text-accent-hover">Terms of Service</a> and <a href="#" class="text-accent-blue hover:text-accent-hover">Privacy Policy</a></label>
+                <label for="terms" class="text-gray-300">Acepto los <a href="#" class="text-accent-blue hover:text-accent-hover">Términos de Servicio</a> y la <a href="#" class="text-accent-blue hover:text-accent-hover">Política de Privacidad</a></label>
               </div>
             </div>
           </div>
@@ -252,7 +252,7 @@
                 <input id="newsletter" name="newsletter" type="checkbox" class="h-4 w-4 text-accent-blue focus:ring-accent-blue border-gray-600 rounded bg-gray-700">
               </div>
               <div class="ml-3 text-sm">
-                <label for="newsletter" class="text-gray-300">Subscribe to newsletter to get updates</label>
+                <label for="newsletter" class="text-gray-300">Suscribirse al boletín para recibir actualizaciones</label>
               </div>
             </div>
           </div>
@@ -266,14 +266,14 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
               </svg>
-              <span>Back</span>
+              <span>Atrás</span>
             </button>
             
             <button
               type="submit"
               class="px-6 py-3 bg-gradient-to-r from-accent-blue to-accent-hover rounded-lg font-semibold text-white transition-all shadow-glow focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center justify-center"
             >
-              <span>Create Account</span>
+              <span>Crear Cuenta</span>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
               </svg>
@@ -286,7 +286,7 @@
         <div class="absolute inset-0 flex items-center">
           <div class="w-full border-t border-gray-700"></div>
         </div>
-        <div class="relative px-4 bg-gray-800 text-xs text-gray-500">Or sign up with</div>
+        <div class="relative px-4 bg-gray-800 text-xs text-gray-500">O regístrese con</div>
       </div>
 
       <div class="grid grid-cols-3 gap-3 mb-6">
@@ -308,8 +308,8 @@
       </div>
 
       <p class="text-sm text-center text-gray-400" data-aos="fade-up" data-aos-delay="700">
-        Already have an account?
-        <a href="/login" class="text-accent-blue hover:text-accent-hover font-medium">Sign in</a>
+        ¿Ya tienes una cuenta?
+        <a href="/login" class="text-accent-blue hover:text-accent-hover font-medium">Inicia sesión</a>
       </p>
     </div>
   </div>

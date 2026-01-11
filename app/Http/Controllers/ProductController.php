@@ -67,7 +67,7 @@ class ProductController extends Controller
 
         $product = Product::create($validated);
 
-        return redirect()->route('products.index')->with('success', 'Product added successfully');
+        return redirect()->route('products.index')->with('success', 'Producto agregado exitosamente');
     }
 
     public function show(Product $product)
@@ -117,7 +117,7 @@ class ProductController extends Controller
 
         $product->update($validated);
 
-        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+        return redirect()->route('products.index')->with('success', 'Producto actualizado exitosamente.');
     }
 
     public function destroy(Product $product)
@@ -129,10 +129,10 @@ class ProductController extends Controller
             }
             $product->delete();
             return redirect()->route('products.index')
-                ->with('success', 'Product deleted successfully.');
+                ->with('success', 'Producto eliminado exitosamente.');
         } catch (\Exception $e) {
             return redirect()->route('products.index')
-                ->with('error', 'Cannot delete product due to existing relationships or other issues.');
+                ->with('error', 'No se puede eliminar el producto debido a relaciones existentes u otros problemas.');
         }
     }
 
@@ -192,7 +192,7 @@ class ProductController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Validation failed',
+                'message' => 'Validación fallida',
                 'errors' => $validator->errors(),
             ], 422);
         }
@@ -228,7 +228,7 @@ class ProductController extends Controller
         return response()->json([
             'status' => 'success',
             'data' => $product,
-            'message' => 'Product updated successfully.',
+            'message' => 'Producto actualizado exitosamente.',
         ], 200);
     }
 
@@ -244,12 +244,12 @@ class ProductController extends Controller
             $product->delete();
             return response()->json([
                 'status' => 'success',
-                'message' => 'Product deleted successfully.',
+                'message' => 'Producto eliminado exitosamente.',
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Cannot delete product due to existing relationships or other issues.',
+                'message' => 'No se puede eliminar el producto debido a relaciones existentes u otros problemas.',
             ], 400);
         }
     }

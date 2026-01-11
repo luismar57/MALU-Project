@@ -6,8 +6,8 @@
         <!-- Header Section -->
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
             <div>
-                <h1 class="text-3xl font-bold text-white mb-2">Edit Product</h1>
-                <p class="text-gray-400">Update product information for {{ $product->pro_name }}</p>
+                <h1 class="text-3xl font-bold text-white mb-2">Editar Producto</h1>
+                <p class="text-gray-400">Actualizar información del producto para {{ $product->pro_name }}</p>
             </div>
             <div class="flex gap-3 mt-4 md:mt-0">
                 <a href="{{ route('products.show', $product->pro_id) }}" class="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2.5 px-5 rounded-lg flex items-center gap-2 transition-all duration-200">
@@ -15,13 +15,13 @@
                         <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                         <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
                     </svg>
-                    View Product
+                    Ver Producto
                 </a>
                 <a href="{{ route('products.index') }}" class="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2.5 px-5 rounded-lg flex items-center gap-2 transition-all duration-200">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                     </svg>
-                    Back to Products
+                    Volver a Productos
                 </a>
             </div>
         </div>
@@ -42,7 +42,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-rose-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span class="font-medium">Please correct the following errors:</span>
+                    <span class="font-medium">Por favor corrija los siguientes errores:</span>
                 </div>
                 <ul class="mt-2 ml-9 list-disc text-sm">
                     @foreach ($errors->all() as $error)
@@ -66,7 +66,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-400" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                     </svg>
-                    Edit Product Information
+                    Editar Información del Producto
                 </h2>
             </div>
 
@@ -79,7 +79,7 @@
                     <div class="space-y-6">
                         <!-- Product Code -->
                         <div>
-                            <label for="pro_code" class="block text-sm font-medium text-gray-300 mb-1">Product Code <span class="text-rose-400">*</span></label>
+                            <label for="pro_code" class="block text-sm font-medium text-gray-300 mb-1">Código del Producto <span class="text-rose-400">*</span></label>
                             <input 
                                 type="text" 
                                 id="pro_code" 
@@ -87,7 +87,7 @@
                                 value="{{ old('pro_code', $product->pro_code) }}" 
                                 required
                                 class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
-                                placeholder="Enter product code"
+                                placeholder="Ingrese el código del producto"
                             >
                             @error('pro_code')
                                 <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
@@ -96,7 +96,7 @@
 
                         <!-- Product Name -->
                         <div>
-                            <label for="pro_name" class="block text-sm font-medium text-gray-300 mb-1">Product Name <span class="text-rose-400">*</span></label>
+                            <label for="pro_name" class="block text-sm font-medium text-gray-300 mb-1">Nombre del Producto <span class="text-rose-400">*</span></label>
                             <input 
                                 type="text" 
                                 id="pro_name" 
@@ -104,7 +104,7 @@
                                 value="{{ old('pro_name', $product->pro_name) }}" 
                                 required
                                 class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
-                                placeholder="Enter product name"
+                                placeholder="Ingrese el nombre del producto"
                             >
                             @error('pro_name')
                                 <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
@@ -113,13 +113,13 @@
 
                         <!-- Category -->
                         <div>
-                            <label for="category_id" class="block text-sm font-medium text-gray-300 mb-1">Category</label>
+                            <label for="category_id" class="block text-sm font-medium text-gray-300 mb-1">Categoría</label>
                             <select 
                                 name="category_id" 
                                 id="category_id"
                                 class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
                             >
-                                <option value="" {{ old('category_id', $product->category_id) === null ? 'selected' : '' }}>Select a Category (Optional)</option>
+                                <option value="" {{ old('category_id', $product->category_id) === null ? 'selected' : '' }}>Seleccione una Categoría (Opcional)</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->cat_id }}" {{ old('category_id', $product->category_id) == $category->cat_id ? 'selected' : '' }}>
                                         {{ $category->cat_name }}
@@ -135,7 +135,7 @@
                         <div class="grid grid-cols-2 gap-4">
                             <!-- Price -->
                             <div>
-                                <label for="price" class="block text-sm font-medium text-gray-300 mb-1">Price <span class="text-rose-400">*</span></label>
+                                <label for="price" class="block text-sm font-medium text-gray-300 mb-1">Precio <span class="text-rose-400">*</span></label>
                                 <div class="relative">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <span class="text-gray-400">$</span>
@@ -159,7 +159,7 @@
 
                             <!-- Discount -->
                             <div>
-                                <label for="discount" class="block text-sm font-medium text-gray-300 mb-1">Discount</label>
+                                <label for="discount" class="block text-sm font-medium text-gray-300 mb-1">Descuento</label>
                                 <div class="relative">
                                     <input 
                                         type="number" 
@@ -183,7 +183,7 @@
 
                         <!-- Quantity -->
                         <div>
-                            <label for="qty" class="block text-sm font-medium text-gray-300 mb-1">Quantity <span class="text-rose-400">*</span></label>
+                            <label for="qty" class="block text-sm font-medium text-gray-300 mb-1">Cantidad <span class="text-rose-400">*</span></label>
                             <input 
                                 type="number" 
                                 id="qty" 
@@ -192,7 +192,7 @@
                                 required 
                                 min="0"
                                 class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
-                                placeholder="Enter quantity"
+                                placeholder="Ingrese la cantidad"
                             >
                             @error('qty')
                                 <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
@@ -204,13 +204,13 @@
                     <div class="space-y-6">
                         <!-- Description -->
                         <div>
-                            <label for="description" class="block text-sm font-medium text-gray-300 mb-1">Description</label>
+                            <label for="description" class="block text-sm font-medium text-gray-300 mb-1">Descripción</label>
                             <textarea 
                                 id="description" 
                                 name="description"
                                 rows="4"
                                 class="w-full px-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
-                                placeholder="Enter product description"
+                                placeholder="Ingrese la descripción del producto"
                             >{{ old('description', $product->description) }}</textarea>
                             @error('description')
                                 <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
@@ -219,7 +219,7 @@
 
                         <!-- Current Image Preview -->
                         <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-2">Current Image</label>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Imagen Actual</label>
                             <div class="bg-gray-900/70 border border-gray-700/50 rounded-lg p-4 flex items-center justify-center">
                                 @if ($product->image)
                                     <div class="relative group">
@@ -241,7 +241,7 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                             </svg>
-                                            <p>No image available</p>
+                                            <p>No hay imagen disponible</p>
                                         </div>
                                     </div>
                                 @endif
@@ -250,7 +250,7 @@
 
                         <!-- Image Upload -->
                         <div>
-                            <label for="image" class="block text-sm font-medium text-gray-300 mb-1">New Image (Upload)</label>
+                            <label for="image" class="block text-sm font-medium text-gray-300 mb-1">Nueva Imagen (Cargar)</label>
                             <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-700 border-dashed rounded-lg">
                                 <div class="space-y-1 text-center">
                                     <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
@@ -258,12 +258,12 @@
                                     </svg>
                                     <div class="flex text-sm text-gray-400">
                                         <label for="image" class="relative cursor-pointer bg-gray-800 rounded-md font-medium text-cyan-400 hover:text-cyan-300 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-cyan-500">
-                                            <span class="px-2">Upload a file</span>
+                                            <span class="px-2">Subir un archivo</span>
                                             <input id="image" name="image" type="file" class="sr-only" onchange="previewImage(this)">
                                         </label>
-                                        <p class="pl-1">or drag and drop</p>
+                                        <p class="pl-1">o arrastrar y soltar</p>
                                     </div>
-                                    <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                    <p class="text-xs text-gray-500">PNG, JPG, GIF hasta 10MB</p>
                                 </div>
                             </div>
                             @error('image')
@@ -273,7 +273,7 @@
 
                         <!-- Image URL -->
                         <div>
-                            <label for="image_url" class="block text-sm font-medium text-gray-300 mb-1">New Image (URL)</label>
+                            <label for="image_url" class="block text-sm font-medium text-gray-300 mb-1">Nueva Imagen (URL)</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
@@ -285,12 +285,12 @@
                                     id="image_url" 
                                     name="image_url" 
                                     value="{{ old('image_url', filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : '') }}"
-                                    placeholder="https://example.com/image.jpg"
+                                    placeholder="https://ejemplo.com/imagen.jpg"
                                     class="w-full pl-10 pr-4 py-2.5 bg-gray-900/70 border border-gray-700/50 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all duration-200"
                                     onchange="previewImageUrl(this.value)"
                                 >
                             </div>
-                            <p class="mt-1 text-xs text-gray-500">Enter an external image URL or upload an image above. URL takes precedence if both are provided.</p>
+                            <p class="mt-1 text-xs text-gray-500">Ingrese una URL de imagen externa o cargue una imagen arriba. La URL tiene prioridad si se proporcionan ambas.</p>
                             @error('image_url')
                                 <p class="mt-1 text-sm text-rose-400">{{ $message }}</p>
                             @enderror
@@ -307,7 +307,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                         </svg>
-                        Update Product
+                        Actualizar Producto
                     </button>
                     <a 
                         href="{{ route('products.index') }}"
@@ -316,7 +316,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
-                        Cancel
+                        Cancelar
                     </a>
                 </div>
             </form>

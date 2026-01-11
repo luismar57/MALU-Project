@@ -6,15 +6,15 @@
         <!-- Header Section -->
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
             <div>
-                <h1 class="text-3xl font-bold text-white mb-2">Categories</h1>
-                <p class="text-gray-400">Manage your product categories</p>
+                <h1 class="text-3xl font-bold text-white mb-2">Categorías</h1>
+                <p class="text-gray-400">Administra las categorías de tus productos</p>
             </div>
             <div class="mt-4 md:mt-0">
                 <a href="{{ route('categories.create') }}" class="bg-cyan-600 hover:bg-cyan-700 text-white font-medium py-2.5 px-5 rounded-lg flex items-center gap-2 transition-all duration-200 shadow-lg shadow-cyan-900/20">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                     </svg>
-                    Add Category
+                    Agregar Categoría
                 </a>
             </div>
         </div>
@@ -44,13 +44,13 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                 </svg>
-                Search Categories
+                Buscar Categorías
             </a>
             <a href="{{ route('categories.trashed') }}" class="bg-amber-600/80 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg flex items-center gap-2 transition-all duration-200">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                 </svg>
-                View Trashed Categories
+                Ver Categorías Eliminadas
             </a>
         </div>
 
@@ -61,7 +61,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-400" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
                     </svg>
-                    All Categories
+                    Todas las Categorías
                 </h2>
                 <span class="bg-gray-700/50 text-gray-300 text-sm py-1 px-3 rounded-full">
                     {{ $categories->total() }} {{ Str::plural('Category', $categories->total()) }}
@@ -73,9 +73,9 @@
                     <thead>
                         <tr class="bg-gray-900/70 text-gray-400 text-sm">
                             <th class="py-3 px-6 text-left font-medium">ID</th>
-                            <th class="py-3 px-6 text-left font-medium">Name</th>
-                            <th class="py-3 px-6 text-center font-medium">Products</th>
-                            <th class="py-3 px-6 text-center font-medium">Actions</th>
+                            <th class="py-3 px-6 text-left font-medium">Nombre</th>
+                            <th class="py-3 px-6 text-center font-medium">Productos</th>
+                            <th class="py-3 px-6 text-center font-medium">Acciones</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-800/50">
@@ -90,21 +90,21 @@
                                 </td>
                                 <td class="py-3 px-6">
                                     <div class="flex justify-center gap-2">
-                                        <a href="{{ route('categories.show', $category->cat_id) }}" class="p-2 bg-gray-700/50 hover:bg-gray-700 text-gray-300 hover:text-white rounded-lg transition-colors" title="View">
+                                        <a href="{{ route('categories.show', $category->cat_id) }}" class="p-2 bg-gray-700/50 hover:bg-gray-700 text-gray-300 hover:text-white rounded-lg transition-colors" title="Ver">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                             </svg>
                                         </a>
-                                        <a href="{{ route('categories.edit', $category->cat_id) }}" class="p-2 bg-cyan-600/20 hover:bg-cyan-600/40 text-cyan-400 hover:text-cyan-300 rounded-lg transition-colors" title="Edit">
+                                        <a href="{{ route('categories.edit', $category->cat_id) }}" class="p-2 bg-cyan-600/20 hover:bg-cyan-600/40 text-cyan-400 hover:text-cyan-300 rounded-lg transition-colors" title="Editar">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                             </svg>
                                         </a>
-                                        <form action="{{ route('categories.destroy', $category->cat_id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this category?');" class="inline">
+                                        <form action="{{ route('categories.destroy', $category->cat_id) }}" method="POST" onsubmit="return confirm('¿Está seguro de que desea eliminar esta categoría?');" class="inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="p-2 bg-rose-600/20 hover:bg-rose-600/40 text-rose-400 hover:text-rose-300 rounded-lg transition-colors" title="Delete">
+                                            <button type="submit" class="p-2 bg-rose-600/20 hover:bg-rose-600/40 text-rose-400 hover:text-rose-300 rounded-lg transition-colors" title="Eliminar">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                 </svg>
@@ -120,13 +120,13 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-600 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                                         </svg>
-                                        <p class="text-lg">No categories found</p>
-                                        <p class="text-sm text-gray-600 mt-1">Create your first category to get started</p>
+                                        <p class="text-lg">No se encontraron categorías</p>
+                                        <p class="text-sm text-gray-600 mt-1">Crea tu primera categoría para comenzar</p>
                                         <a href="{{ route('categories.create') }}" class="mt-4 bg-cyan-600 hover:bg-cyan-700 text-white font-medium py-2 px-4 rounded-lg flex items-center gap-2 transition-all duration-200">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                             </svg>
-                                            Add Category
+                                            Agregar Categoría
                                         </a>
                                     </div>
                                 </td>
@@ -149,7 +149,7 @@
             <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl border border-gray-700/50 p-6 shadow-xl">
                 <div class="flex justify-between items-start">
                     <div>
-                        <p class="text-gray-400 text-sm mb-1">Total Categories</p>
+                        <p class="text-gray-400 text-sm mb-1">Total de Categorías</p>
                         <p class="text-2xl font-bold text-white">{{ $categories->total() }}</p>
                     </div>
                     <div class="p-3 bg-cyan-600/10 rounded-lg border border-cyan-600/20">
@@ -163,7 +163,7 @@
             <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl border border-gray-700/50 p-6 shadow-xl">
                 <div class="flex justify-between items-start">
                     <div>
-                        <p class="text-gray-400 text-sm mb-1">Products Categorized</p>
+                        <p class="text-gray-400 text-sm mb-1">Productos Categorizados</p>
                         <p class="text-2xl font-bold text-white">{{ $totalProducts ?? 0 }}</p>
                     </div>
                     <div class="p-3 bg-emerald-600/10 rounded-lg border border-emerald-600/20">
@@ -177,7 +177,7 @@
             <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl border border-gray-700/50 p-6 shadow-xl">
                 <div class="flex justify-between items-start">
                     <div>
-                        <p class="text-gray-400 text-sm mb-1">Trashed Categories</p>
+                        <p class="text-gray-400 text-sm mb-1">Categorías Eliminadas</p>
                         <p class="text-2xl font-bold text-white">{{ $trashedCount ?? 0 }}</p>
                     </div>
                     <div class="p-3 bg-amber-600/10 rounded-lg border border-amber-600/20">

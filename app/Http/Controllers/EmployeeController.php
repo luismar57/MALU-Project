@@ -84,7 +84,7 @@ class EmployeeController extends Controller
         Employee::create($request->only(['name', 'position', 'department', 'status']));
 
         // Redirect to the employee list page
-        return redirect()->route('employees.index')->with('success', 'Employee added successfully!');
+        return redirect()->route('employees.index')->with('success', '¡Empleado agregado exitosamente!');
     }
 
     public function update(Request $request, Employee $employee)
@@ -99,7 +99,7 @@ class EmployeeController extends Controller
         // Update employee with validated data
         $employee->update($validated);
 
-        return redirect()->route('employees.index')->with('success', 'Employee updated successfully');
+        return redirect()->route('employees.index')->with('success', 'Empleado actualizado exitosamente');
     }
 
 
@@ -109,7 +109,7 @@ class EmployeeController extends Controller
         $employee->delete();
 
         // Redirect back with a success message
-        return redirect()->route('employees.index')->with('success', 'Employee deleted successfully');
+        return redirect()->route('employees.index')->with('success', 'Empleado eliminado exitosamente');
     }
 
     public function edit(Employee $employee)

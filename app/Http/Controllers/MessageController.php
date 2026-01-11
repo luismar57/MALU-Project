@@ -34,6 +34,6 @@ class MessageController extends Controller
         Message::create($request->only(['to', 'subject', 'message']));
 
         // Redirect to the messages list page
-        return redirect()->route('messages.index')->with('success', 'Message sent successfully!');
+        return redirect()->route('messages.index')->with('success', '¡Mensaje enviado exitosamente!');
     }
 }

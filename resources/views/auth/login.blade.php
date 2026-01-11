@@ -45,8 +45,8 @@
         </div>
       </div>
       
-      <h2 class="text-3xl font-bold text-center mb-2 text-white" data-aos="fade-down" data-aos-delay="300">Login to Admin</h2>
-      <p class="text-center text-gray-400 mb-8" data-aos="fade-down" data-aos-delay="400">Sign in to continue your Account</p>
+      <h2 class="text-3xl font-bold text-center mb-2 text-white" data-aos="fade-down" data-aos-delay="300">Iniciar Sesión como Admin</h2>
+      <p class="text-center text-gray-400 mb-8" data-aos="fade-down" data-aos-delay="400">Inicie sesión para continuar con su cuenta</p>
 
       @if (session('success'))
         <div class="mb-6 px-4 py-3 rounded-lg bg-green-900/50 border border-green-500" data-aos="fade-in" data-aos-delay="500">
@@ -64,7 +64,7 @@
         @csrf
 
         <div class="relative">
-          <label class="block text-sm font-medium mb-1 text-gray-300">Email</label>
+          <label class="block text-sm font-medium mb-1 text-gray-300">Correo Electrónico</label>
           <div class="relative">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -75,14 +75,14 @@
               type="email"
               name="email"
               class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-800/70 border border-gray-700 placeholder-gray-500 text-gray-100 transition-all input-focus focus:outline-none focus:ring-2 focus:ring-accent-blue"
-              placeholder="you@example.com"
+              placeholder="tu@ejemplo.com"
               required
             />
           </div>
         </div>
 
         <div class="relative">
-          <label class="block text-sm font-medium mb-1 text-gray-300">Password</label>
+          <label class="block text-sm font-medium mb-1 text-gray-300">Contraseña</label>
           <div class="relative">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -108,10 +108,10 @@
         <div class="flex items-center justify-between">
           <div class="flex items-center">
             <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-accent-blue focus:ring-accent-blue border-gray-600 rounded bg-gray-700">
-            <label for="remember-me" class="ml-2 block text-sm text-gray-400">Remember me</label>
+            <label for="remember-me" class="ml-2 block text-sm text-gray-400">Recordarme</label>
           </div>
           <div class="text-sm">
-            <a href="#" class="font-medium text-accent-blue hover:text-accent-hover">Forgot password?</a>
+            <a href="#" class="font-medium text-accent-blue hover:text-accent-hover">¿Olvidó su contraseña?</a>
           </div>
         </div>
 
@@ -120,7 +120,7 @@
             type="submit"
             class="w-full py-3 px-4 btn-gradient hover:opacity-90 rounded-lg font-semibold text-white transition-all shadow-glow focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center justify-center"
           >
-            <span>Sign In</span>
+            <span>Iniciar Sesión</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>

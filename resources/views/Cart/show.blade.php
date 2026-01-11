@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4">Order #{{ $order->id }}</h1>
+        <h1 class="text-2xl font-bold mb-4">Pedido #{{ $order->id }}</h1>
 
         @if (session('success'))
             <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
@@ -18,18 +18,18 @@
         @endif
 
         <div class="bg-white shadow-md rounded-lg p-6">
-            <p><strong>Status:</strong> {{ ucfirst($order->status) }}</p>
+            <p><strong>Estado:</strong> {{ ucfirst($order->status) }}</p>
             <p><strong>Total:</strong> ${{ number_format($order->total, 2) }}</p>
-            <h2 class="text-lg font-semibold mt-4 mb-2">Items</h2>
+            <h2 class="text-lg font-semibold mt-4 mb-2">Artículos</h2>
             @if ($order->orderItems->isEmpty())
-                <p class="text-gray-600">No items in this order.</p>
+                <p class="text-gray-600">No hay artículos en este pedido.</p>
             @else
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Producto</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cantidad</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Precio</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
                         </tr>
                     </thead>
@@ -48,7 +48,7 @@
         </div>
 
         <div class="mt-4">
-            <a href="{{ route('cart.index') }}" class="text-blue-500 hover:underline">Back to Orders</a>
+            <a href="{{ route('cart.index') }}" class="text-blue-500 hover:underline">Volver a Pedidos</a>
         </div>
     </div>
 </body>
